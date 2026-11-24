@@ -1,4 +1,4 @@
-const CACHE_STATIC_NAME = 'static-camara-pwa-v2'
+const CACHE_STATIC_NAME = 'static-camara-pwa-v3'
 
 const STATIC_FILES = [
     './',
@@ -45,8 +45,14 @@ self.addEventListener('fetch', (event) => {
     if (event.request.method !== 'GET') return
 
     event.respondWith(
-        caches.match(event.request).then((respuestaCacheada) => {
-            return respuestaCacheada || fetch(event.request).catch(() => respuestaCacheada)
-        })
+        fetch(event.request)
+            .then((respuestaRed) => {
+                const copia = respuestaRed.clone()
+                caches.open(CACHE_STATIC_NAME).then((cache) => {
+                    cache.put(event.request, copia).catch(() => {})
+                })
+                return respuestaRed
+            })
+            .catch(() => caches.match(event.request))
     )
 })
