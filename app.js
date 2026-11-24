@@ -23,12 +23,27 @@ function actualizarMensajeEstado(texto) {
     mensajeEstado.textContent = texto
 }
 
-function pintarVisorEncendido(modo) {
+function etiquetaLenteDesdeStream(stream, modoSolicitado) {
+    const pista = stream.getVideoTracks()[0]
+    if (!pista) return modoSolicitado === 'environment' ? 'Trasera' : 'Frontal'
+
+    const ajustes = typeof pista.getSettings === 'function' ? pista.getSettings() : {}
+    if (ajustes.facingMode === 'environment') return 'Trasera'
+    if (ajustes.facingMode === 'user') return 'Frontal'
+
+    const etiquetaDispositivo = (pista.label || '').trim()
+    if (etiquetaDispositivo) return etiquetaDispositivo
+    return 'Cámara disponible'
+}
+
+function pintarVisorEncendido(stream, modoSolicitado) {
     visorVacio.hidden = true
     btnPrepararCamara.disabled = true
     btnAlternarCamara.disabled = false
     btnApagarCamara.disabled = false
-    actualizarMensajeEstado('Cámara activa (' + (modo === 'environment' ? 'Trasera' : 'Frontal') + ').')
+
+    const etiqueta = etiquetaLenteDesdeStream(stream, modoSolicitado)
+    actualizarMensajeEstado('Cámara activa (' + etiqueta + ').')
 }
 
 function pintarVisorApagado() {
@@ -61,7 +76,7 @@ function iniciarCamara(modo) {
             streamActual = stream
             modoCamaraActual = modo
             visorVideo.srcObject = stream
-            pintarVisorEncendido(modo)
+            pintarVisorEncendido(stream, modo)
         })
         .catch((error) => {
             pintarVisorApagado()

@@ -1,4 +1,4 @@
-const CACHE_STATIC_NAME = 'static-camara-pwa-v1'
+const CACHE_STATIC_NAME = 'static-camara-pwa-v2'
 
 const STATIC_FILES = [
     './',

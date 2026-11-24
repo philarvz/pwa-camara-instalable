@@ -1,5 +1,7 @@
 * { box-sizing: border-box; }
 
+[hidden] { display: none !important; }
+
 :root {
     --fondo: #0f172a;
     --superficie: #ffffff;
