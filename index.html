@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Inspección Visual PWA</title>
+
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#0f172a">
+
+    <link rel="icon" href="./icons/icon-192.png">
+    <link rel="apple-touch-icon" href="./icons/icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="InspecciónPWA">
+
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <header>
+        <h1>Inspección Visual PWA</h1>
+        <button id="btn-instalar" type="button" hidden>Instalar App</button>
+    </header>
+
+    <main>
+        <section id="instrucciones-ios" class="card aviso-ios" hidden>
+            <h2>Instalar en iPhone / iPad</h2>
+            <p>
+                Para instalar en iPhone, pulsa el icono <strong>Compartir</strong> de Safari
+                y selecciona <strong>Agregar a inicio</strong>.
+            </p>
+            <ol>
+                <li>Abre esta página en <strong>Safari</strong>.</li>
+                <li>Toca el botón <strong>Compartir</strong> de la barra inferior.</li>
+                <li>Elige <strong>Agregar a inicio</strong> y confirma.</li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h2>Visor de Cámara</h2>
+
+            <div class="visor">
+                <video id="visor-camara" autoplay playsinline muted></video>
+                <div id="visor-vacio" class="visor-vacio">Cámara apagada</div>
+            </div>
+
+            <p id="mensaje-estado" class="mensaje-estado">Cámara inactiva. Pulsa "Solicitar Acceso a Cámara" para comenzar.</p>
+
+            <div class="acciones">
+                <button id="btn-preparar-camara" type="button">Solicitar Acceso a Cámara</button>
+                <button id="btn-alternar-camara" type="button" disabled>Alternar Frontal / Trasera</button>
+                <button id="btn-apagar-camara" type="button" class="danger" disabled>Apagar Cámara</button>
+            </div>
+        </section>
+
+        <section id="aviso-permiso" class="card aviso-permiso" hidden>
+            <h2>Aviso de uso de la cámara</h2>
+            <p>
+                Esta aplicación requiere acceso a tu cámara únicamente para
+                mostrar una vista previa local en pantalla.
+                <strong>Ninguna imagen se envía a servidores externos.</strong>
+            </p>
+            <ul>
+                <li>El flujo de video ocurre en tu dispositivo.</li>
+                <li>Puedes apagar la cámara en cualquier momento.</li>
+                <li>El sensor se libera al cambiar de lente o apagar.</li>
+            </ul>
+            <div class="aviso-acciones">
+                <button id="btn-cancelar-permiso" type="button" class="secondary">Cancelar</button>
+                <button id="btn-confirmar-permiso" type="button">Aceptar y Encender Cámara</button>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Estado del Service Worker</h2>
+            <p id="estado-sw" class="estado-sw">Registrando…</p>
+        </section>
+    </main>
+
+    <script src="./app.js"></script>
+</body>
+</html>

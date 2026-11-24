@@ -1,0 +1,221 @@
+* { box-sizing: border-box; }
+
+:root {
+    --fondo: #0f172a;
+    --superficie: #ffffff;
+    --superficie-tenue: #f8fafc;
+    --texto: #0f172a;
+    --texto-tenue: #475569;
+    --borde: #e2e8f0;
+    --primario: #0ea5e9;
+    --primario-fuerte: #0369a1;
+    --peligro: #dc2626;
+    --exito: #16a34a;
+    --aviso: #f59e0b;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    background: var(--superficie-tenue);
+    color: var(--texto);
+    min-height: 100vh;
+}
+
+header {
+    background: var(--fondo);
+    color: #f8fafc;
+    padding: 1rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.15rem;
+    letter-spacing: 0.01em;
+}
+
+#btn-instalar {
+    cursor: pointer;
+    border: none;
+    padding: 0.55rem 1rem;
+    border-radius: 8px;
+    background: var(--primario);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+main {
+    max-width: 720px;
+    margin: 1.25rem auto;
+    padding: 0 1rem 2rem;
+    display: grid;
+    gap: 1rem;
+}
+
+.card {
+    background: var(--superficie);
+    border-radius: 12px;
+    padding: 1.1rem 1.1rem 1.25rem;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+
+.card h2 {
+    margin: 0 0 0.6rem;
+    font-size: 1.05rem;
+}
+
+.visor {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: #0f172a;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#visor-camara {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: #000;
+}
+
+.visor-vacio {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+}
+
+.mensaje-estado {
+    margin: 0.75rem 0 1rem;
+    font-size: 0.9rem;
+    color: var(--texto-tenue);
+    background: var(--superficie-tenue);
+    border: 1px solid var(--borde);
+    border-left: 4px solid var(--primario);
+    padding: 0.6rem 0.75rem;
+    border-radius: 8px;
+}
+
+.acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.acciones button,
+.aviso-acciones button {
+    cursor: pointer;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    background: var(--primario);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.9rem;
+    flex: 1 1 auto;
+    min-width: 140px;
+}
+
+.acciones button:hover:not(:disabled),
+.aviso-acciones button:hover:not(:disabled) {
+    background: var(--primario-fuerte);
+}
+
+.acciones button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.acciones .danger {
+    background: var(--peligro);
+}
+
+.acciones .danger:hover:not(:disabled) {
+    background: #991b1b;
+}
+
+.aviso-permiso {
+    border: 1px solid var(--aviso);
+    border-left: 6px solid var(--aviso);
+    background: #fffbeb;
+}
+
+.aviso-permiso h2 {
+    color: #92400e;
+}
+
+.aviso-permiso ul {
+    margin: 0.5rem 0 1rem;
+    padding-left: 1.25rem;
+    color: var(--texto-tenue);
+    font-size: 0.9rem;
+}
+
+.aviso-permiso li {
+    margin-bottom: 0.2rem;
+}
+
+.aviso-acciones {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.aviso-acciones .secondary {
+    background: transparent;
+    color: var(--texto-tenue);
+    border: 1px solid var(--borde);
+}
+
+.aviso-acciones .secondary:hover {
+    background: var(--superficie-tenue);
+}
+
+.aviso-ios {
+    border: 1px solid #38bdf8;
+    border-left: 6px solid #0ea5e9;
+    background: #f0f9ff;
+}
+
+.aviso-ios h2 {
+    color: #075985;
+}
+
+.aviso-ios ol {
+    margin: 0.5rem 0 0;
+    padding-left: 1.25rem;
+    color: var(--texto-tenue);
+    font-size: 0.9rem;
+}
+
+.aviso-ios li {
+    margin-bottom: 0.2rem;
+}
+
+.estado-sw {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--texto-tenue);
+}
+
+@media (max-width: 480px) {
+    header h1 { font-size: 1rem; }
+    .card { padding: 1rem; }
+    .acciones button { min-width: 100%; }
+}
